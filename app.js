@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
     skipEmptyLines: true,
     complete: function(results) {
       denuncias = results.data;
-      columnas = results.meta.fields || Object.keys(denuncias[0] || {}); // nombres columnas
+      // Si no hay columnas detectadas, usa las claves del primer objeto
+      columnas = results.meta.fields && results.meta.fields.length > 0
+        ? results.meta.fields
+        : Object.keys(denuncias[0] || {});
     }
   });
 
@@ -34,15 +37,16 @@ document.addEventListener("DOMContentLoaded", function() {
       resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
     } else {
       // Construir tabla HTML
-      let tabla = "<table border='1' cellpadding='5' cellspacing='0'><thead><tr>";
+      let tabla = "<table style='border-collapse:collapse;width:100%'>";
+      tabla += "<thead><tr>";
       columnas.forEach(col => {
-        tabla += `<th>${col}</th>`;
+        tabla += `<th style='border:1px solid #ccc;padding:4px;background:#f8f8f8'>${col}</th>`;
       });
       tabla += "</tr></thead><tbody>";
       resultados.forEach(res => {
         tabla += "<tr>";
         columnas.forEach(col => {
-          tabla += `<td>${res[col] || ""}</td>`;
+          tabla += `<td style='border:1px solid #ccc;padding:4px'>${res[col] || ""}</td>`;
         });
         tabla += "</tr>";
       });
