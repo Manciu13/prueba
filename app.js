@@ -1,4 +1,3 @@
-// Espera a que el DOM esté listo
 document.addEventListener("DOMContentLoaded", function() {
   let denuncias = [];
 
@@ -15,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("buscarBtn").addEventListener("click", function() {
     const palabra = document.getElementById("buscador").value.trim().toLowerCase();
     const resultados = denuncias.filter(d => {
-      // Ajusta "denuncia" por el nombre real de la columna en tu CSV
-      return d.denuncia && d.denuncia.toLowerCase().includes(palabra);
+      // Busca en la columna "Descripció"
+      return d["Descripció"] && d["Descripció"].toLowerCase().includes(palabra);
     });
 
     // Mostrar resultados
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
       resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
     } else {
       resultados.forEach(res => {
-        resultadosDiv.innerHTML += `<p>${res.denuncia}</p>`;
+        resultadosDiv.innerHTML += `<p>${res["Descripció"]}</p>`;
       });
     }
   });
