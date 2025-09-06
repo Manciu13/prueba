@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
     skipEmptyLines: true,
     complete: function(results) {
       denuncias = results.data;
-      // Obtiene los nombres de las columnas del CSV
       columnas = results.meta.fields && results.meta.fields.length > 0
         ? results.meta.fields
         : Object.keys(denuncias[0] || {});
@@ -36,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (resultados.length === 0) {
       resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
     } else {
-      // Construir tabla HTML
+      // Construir la tabla con todas las columnas
       let tabla = "<table style='border-collapse:collapse;width:100%'><thead><tr>";
       columnas.forEach(col => {
         tabla += `<th style='border:1px solid #ccc;padding:4px;background:#f8f8f8'>${col}</th>`;
