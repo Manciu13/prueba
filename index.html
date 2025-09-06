@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Buscador de denuncias</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    #buscador { padding: 0.5em; width: 300px; }
+    #buscarBtn { padding: 0.5em 1em; }
+    #resultados { margin-top: 2em; }
+  </style>
 </head>
 <body>
-  <input type="text" id="buscador" placeholder="Buscar denuncia...">
+  <h1>Buscador de denuncias</h1>
+  <input type="text" id="buscador" placeholder="Escribe una palabra de búsqueda...">
   <button id="buscarBtn">Buscar</button>
   <div id="resultados"></div>
+
+  <!-- PapaParse para leer el CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <!-- Tu lógica de búsqueda -->
   <script src="app.js"></script>
 </body>
 </html>
