@@ -1,27 +1,34 @@
+// Función para normalizar texto: quita acentos y pasa a minúsculas
+function normaliza(texto) {
+  return texto
+    ? texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    : "";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   let denuncias = [];
 
-  // Cargar el CSV
   Papa.parse("data/denuncias.csv", {
     download: true,
     header: true,
+    skipEmptyLines: true,
     complete: function(results) {
       denuncias = results.data;
     }
   });
 
-  // Función de búsqueda
   document.getElementById("buscarBtn").addEventListener("click", function() {
-    const palabra = document.getElementById("buscador").value.trim().toLowerCase();
+    const palabra = normaliza(document.getElementById("buscador").value.trim());
     const resultados = denuncias.filter(d => {
-      // Busca en la columna "Descripció"
-      return d["Descripció"] && d["Descripció"].toLowerCase().includes(palabra);
+      return (
+        d["Descripció"] &&
+        normaliza(d["Descripció"]).includes(palabra)
+      );
     });
 
-    // Mostrar resultados
     const resultadosDiv = document.getElementById("resultados");
     resultadosDiv.innerHTML = "";
-    if(resultados.length === 0) {
+    if (resultados.length === 0) {
       resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
     } else {
       resultados.forEach(res => {
