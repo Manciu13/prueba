@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     skipEmptyLines: true,
     complete: function(results) {
       denuncias = results.data;
-      columnas = results.meta.fields; // Obtiene los nombres de las columnas
+      columnas = results.meta.fields || Object.keys(denuncias[0] || {}); // nombres columnas
     }
   });
 
@@ -29,11 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const resultadosDiv = document.getElementById("resultados");
     resultadosDiv.innerHTML = "";
+
     if (resultados.length === 0) {
       resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
     } else {
-      // Construye la tabla
-      let tabla = "<table border='1' cellpadding='5'><thead><tr>";
+      // Construir tabla HTML
+      let tabla = "<table border='1' cellpadding='5' cellspacing='0'><thead><tr>";
       columnas.forEach(col => {
         tabla += `<th>${col}</th>`;
       });
