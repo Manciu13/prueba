@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Buscador de Denuncias de Tráfico</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Buscador de denuncias</title>
 </head>
 <body>
-    <h1>Buscador de Denuncias de Tráfico</h1>
-    <input type="text" id="searchInput" placeholder="Escribe una palabra clave..."><button onclick="buscar()">Buscar</button>
-    <div id="results"></div>
-    <!-- PapaParse para leer CSV -->
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-    <script src="app.js"></script>
+  <input type="text" id="buscador" placeholder="Buscar denuncia...">
+  <button id="buscarBtn">Buscar</button>
+  <div id="resultados"></div>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
